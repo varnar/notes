@@ -1,0 +1,15 @@
+How to change the From header for messages sent by Postfix
+
+Step-by-step guide
+
+1. Add the following line in /etc/postfix/main.cf . All outgoing emails will have this address in the FROM field, but the name of the sender will not be modified. Replace <FQDN> with your fully qualified domain name.
+    sender_canonical_maps = static:no-reply@<FQDN>
+
+2. To modify the name as well, you need to create a file in /etc/postfix/header_checks which contains this line:
+    /^From:[[:space:]]+(.*)/ REPLACE From: "Your Name" <email@company.com>
+
+3. Then run the following commands:
+    cd /etc/postfix
+    postmap header_checks
+    postconf -e 'smtp_header_checks = regexp:/etc/postfix/header_checks'
+    service postfix reload
