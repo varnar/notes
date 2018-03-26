@@ -1,3 +1,11 @@
 How run MySQL client to force no buffering output:
+Using "--quick --unbuffered" will force mysql to write output as soon it ready
 
-mysql --reconnect -h gc-cisco-dwh-rep.westlakefinancial.com -u wfs_storeproc -p"xxxxxx-" **--quick --unbuffered** -Bse "call daybreak.sp_create_mv_accounts_daily_ext"
+mysql --reconnect -h gc-cisco-dwh-rep.westlakefinancial.com -u wfs_storeproc -p"xxxxxx-" --quick --unbuffered -Bse "call daybreak.sp_create_mv_accounts_daily_ext"
+
+Redirect all in to log file:
+
+touch log_file
+mysql --reconnect -h gc-cisco-dwh-rep.westlakefinancial.com -u wfs_storeproc -p"rjQMP0mWyOlOzk8Ddh132-" --unbuffered -Bqse "call vardan_tmp.testing_sp" >> log_file 2>&1
+
+If using tee - use with "tee -a"
