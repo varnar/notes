@@ -1,0 +1,53 @@
+#!/bin/bash
+
+a="10"
+b="5"
+i="1"
+j="1"
+
+while [ $i -ne $a ]
+do
+    while [ $j -ne $b ]
+    do
+        echo "In Child Loop $j Times"
+        ((j++))
+    done
+    j="1"
+    echo "In Parent Loop $i Times"
+    ((i++))
+done
+
+output:
+
+$ bash nestedtest.sh
+In Child Loop 1 Times
+In Child Loop 2 Times
+In Child Loop 3 Times
+In Child Loop 4 Times
+In Parent Loop 1 Times
+In Child Loop 1 Times
+In Child Loop 2 Times
+In Child Loop 3 Times
+In Child Loop 4 Times
+In Parent Loop 2 Times
+In Child Loop 1 Times
+In Child Loop 2 Times
+In Child Loop 3 Times
+In Child Loop 4 Times
+In Parent Loop 3 Times
+In Child Loop 1 Times
+In Child Loop 2 Times
+In Child Loop 3 Times
+In Child Loop 4 Times
+In Parent Loop 4 Times
+(snip)
+
+Additionally, since bash does not have typed variables, there can be ambiguity whether a variable should be treated as a number or as a string. Type is determined by context. However, you can let bash know how you intend to use a variable if you declare the variable before its first use. E.g.:
+
+declare -i a="10" b="5" i="1" j="1"
+
+NOTE: here you can place more than one declaration on a single line simply separate by a space.
+
+Additionally, if you receive an "[: 1, : integer expression expected" error. that is usually due to one of two reasons. (1) the variable is not defined yet, or (2) it doesn't contain a number. The way you avoid that is to always make sure you initialize your variables before you test them. (you did here, you just had the comma problem).
+
+Lastly, while not required on numeric values, it is a good idea to double-quote your variables. This will save you many many headaches along the way.
