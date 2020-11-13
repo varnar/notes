@@ -40,7 +40,7 @@ pipeline {
                 echo "${env.STAGE_NAME}"
                 echo 'Building..'
                 echo "${params.PIPELINE_STRING}"
-                sleep 20
+                sleep 1
             }
         }
         stage('Stage Test') {
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "${params.PIPELINE_STRING}"
-                sleep 20
+                sleep 1
             }
         }
         stage('Stage Deploy') {
@@ -66,7 +66,7 @@ pipeline {
                 build job: 'Job_With_Parameters', parameters: [string(name: 'String', value: "${params.PIPELINE_STRING}")]
                 sh "echo ${params.PIPELINE_STRING}"
                 
-                sleep 200
+                sleep 1
             }
         }
         stage('Parallel') {
