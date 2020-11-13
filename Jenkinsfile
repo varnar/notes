@@ -1,9 +1,9 @@
 def releaseResources($msg) {
-    echo "============================="
+    echo "============================= "
     echo $msg
     echo "... in ..."
     echo "${env.StageName}"
-    echo "============================="
+    echo "============================= "
     sleep 1
 }
 
