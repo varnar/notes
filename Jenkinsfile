@@ -28,6 +28,11 @@ pipeline {
             }
         }
         stage('Stage Build') {
+            when {
+                expression {
+                    params.JobConfigRefresh == false
+                }
+            }                
             steps {
                 script {
                     env.StageName = "${env.STAGE_NAME}"
@@ -39,6 +44,11 @@ pipeline {
             }
         }
         stage('Stage Test') {
+            when {
+                expression {
+                    params.JobConfigRefresh == false
+                }
+            }               
             steps {
                 echo 'Testing..'
                 echo "${params.PIPELINE_STRING}"
@@ -46,6 +56,11 @@ pipeline {
             }
         }
         stage('Stage Deploy') {
+            when {
+                expression {
+                    params.JobConfigRefresh == false
+                }
+            }               
             steps {
                 echo 'Deploying....'
                 build job: 'Job_With_Parameters', parameters: [string(name: 'String', value: "${params.PIPELINE_STRING}")]
@@ -55,6 +70,11 @@ pipeline {
             }
         }
         stage('Parallel') {
+            when {
+                expression {
+                    params.JobConfigRefresh == false
+                }
+            }               
             steps {
                 parallel(
                     a:{
