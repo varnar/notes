@@ -13,9 +13,20 @@ pipeline {
         skipStagesAfterUnstable()
     }
     parameters {
+        booleanParam(name: 'JobConfigRefresh', defaultValue: false, description: ''),
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How you should I greet the world?')
     }
     stages {
+        stage('Job config refresh') {
+            when {
+                expression {
+                        params.JobConfigRefresh == true
+                }
+            }
+            steps {
+                echo "Refreshing job config from SCM"
+            }
+        }
         stage('Stage Build') {
             steps {
                 script {
