@@ -4,7 +4,7 @@ def releaseResources($msg) {
     echo "... in ..."
     echo "${env.StageName}"
     echo "============================="
-    sleep 10
+    sleep 1
 }
 
 pipeline {
