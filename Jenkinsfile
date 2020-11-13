@@ -28,6 +28,13 @@ pipeline {
                 return
             }
         }
+    }
+    stages {
+        when {
+            expression {
+                params.JobConfigRefresh == false
+            }
+        }        
         stage('Stage Build') {
             steps {
                 script {
