@@ -25,6 +25,7 @@ pipeline {
             }
             steps {
                 echo "Refreshing job config from SCM"
+                return
             }
         }
         stage('Stage Build') {
