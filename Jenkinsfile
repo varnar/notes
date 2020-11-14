@@ -13,7 +13,7 @@ pipeline {
         skipStagesAfterUnstable()
     }
     parameters {
-        booleanParam(name: 'JobConfigRefreshNew_new_branch', defaultValue: false, description: '')
+        booleanParam(name: 'JobConfigRefresh', defaultValue: false, description: 'JobConfigRefreshNew_new_branch')
         string(name: 'Greeting', defaultValue: 'Hello', description: 'How you should I greet the world?')
     }
     stages {
