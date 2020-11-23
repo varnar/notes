@@ -52,7 +52,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "${params.PIPELINE_STRING}"
-                sleep 1
+                sleep 200
             }
         }
         stage('Stage Deploy') {
